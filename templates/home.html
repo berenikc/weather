@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="jumbo">
+        <h2 data-bind="text: location"></h2>
+
+        
+    </div>
+    <div class="center bottom">
+        <label for="location">Enter Location: </label><input type="text" id="location" /><button data-bind="click: findLocation">Find Me!</button>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='viewmodels/home.js') }}"></script>
+    
+    
+ {% endblock %}
