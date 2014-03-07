@@ -2,6 +2,9 @@ function HomeViewModel() {
 
     var self = this
     self.location = ko.observable()
+    self.weather = ko.observable()
+    self.currentTemp = ko.observable()
+    self.weatherDesc = ko.observableArray()
     self.lat
     self.lon
     
@@ -13,9 +16,10 @@ function HomeViewModel() {
             })
             .done(function(data) {
                 //TODO: might get back more than 1 city possibbly, allow them to choose
-                console.log(data);
+                self.weather(data)
             })
     }
+    
     
     self.setLocation = function(geoPos) {
         self.lat = geoPos.coords.latitude
@@ -31,7 +35,6 @@ function HomeViewModel() {
         .done(function(addressData) {
             self.location(addressData.address.city + ", " + addressData.address.state)
             self.getWeather(addressData.address.city + "," + addressData.address.state)
-            // console.log(addressData)
         })
     }
 
@@ -43,6 +46,8 @@ function HomeViewModel() {
         })
         .done(function(weatherData) {
             console.log(weatherData)
+            self.currentTemp(weatherData.main.temp + "°C")
+            self.weatherDesc(weatherData.weather)
         })
     }
 

@@ -5,6 +5,10 @@
 {% block content %}
     <div class="jumbo">
         <h2 data-bind="text: location"></h2>
+        <h3 data-bind="text: currentTemp"></h3>
+        <span data-bind="foreach: weatherDesc" class="center">
+            <h4 data-bind="text: description"></h4>
+        </span>
 
         
     </div>
